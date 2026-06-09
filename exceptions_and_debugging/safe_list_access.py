@@ -77,3 +77,18 @@ Output Example 3:
 =================================================
 
 """
+#ASAD AHMAD 25BCSG20
+def safe_get(items, index):
+    try:
+        return items[index]
+    except IndexError:
+        return ('error', 'Index out of range')
+    except TypeError:
+        return ('error', 'Index must be an int')
+    except Exception as e:
+        return ('error', f'Unexpected error: {str(e)}')
+    else:
+        return ('ok', items[index])
+print(safe_get([10, 20, 30, 40], 2))
+print(safe_get([10, 20, 30], 7))
+print(safe_get([10, 20, 30], "1"))

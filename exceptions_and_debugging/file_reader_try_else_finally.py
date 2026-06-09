@@ -124,3 +124,34 @@ Explanation:
 =================================================
 
 """
+#ASAD AHMAD 25BCSG20
+def read_numbers(path):
+    lines_read = 0
+    total_sum = 0.0
+    try:
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                number = float(line)
+                total_sum += number
+                lines_read += 1
+    except FileNotFoundError:
+        return ('error', f'File not found: {path}', 0)
+    except PermissionError:
+        return ('error', f'Cannot read file: {path}', 0)
+    except ValueError:
+        return ('error', 'Invalid number on a line', lines_read)
+    except Exception as e:
+        return ('error', f'Unexpected error: {str(e)}', lines_read)
+    else:
+        return ('ok', total_sum, lines_read)
+    finally:
+        print("Done reading")
+with open("my_numbers.txt", "w") as f:
+    f.write("10\n")
+    f.write("20.5\n")
+    f.write("30\n")
+result = read_numbers("my_numbers.txt")
+print(result)
